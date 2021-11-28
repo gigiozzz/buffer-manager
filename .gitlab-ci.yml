@@ -80,16 +80,16 @@ release-start:
     # always return true so that the build does not fail if there are no changes
     - git commit -am "change pom version to ${RELEASE_VER}"
     - git push origin release/"${RELEASE_VER}"
-    # merge on master
-    - git checkout master
+    # merge on main
+    - git checkout main
     - git merge --no-ff release/"${RELEASE_VER}"
-    - git push origin master 
+    - git push origin main 
     # tag master
     - git tag -a v"${RELEASE_VER}" -m "release version ${RELEASE_VER}"
     - git push origin --tags
     # merge on develop
     - git checkout develop
-    - git merge --no-ff master
+    - git merge --no-ff main
     - mvn versions:set -DnewVersion="${NEXT_POM_VER}"    
     - git commit -am "change develop pom version to next dev versioin ${RELEASE_VER}"
     - git push origin develop 
